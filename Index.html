@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bachpan Ki Muskan – हर मुस्कान मायने रखती है</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Hind:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #fefaf5;
+        color: #333;
+    }
+    header {
+        background: url('https://images.unsplash.com/photo-1601999740817-1d9e6fcdadfd?auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        text-align: center;
+        position: relative;
+    }
+    header::after {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+    header .content {
+        position: relative;
+        z-index: 2;
+        animation: fadeIn 2s ease-in-out;
+    }
+    header h1 {
+        font-size: 3rem;
+        font-family: 'Hind', sans-serif;
+    }
+    header p {
+        font-size: 1.2rem;
+        margin-top: 10px;
+    }
+    .btn {
+        background-color: #f78c6c;
+        color: white;
+        padding: 10px 20px;
+        margin: 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: 0.3s;
+    }
+    .btn:hover {
+        background-color: #e76f51;
+    }
+    section {
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: auto;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s ease-in-out;
+    }
+    section.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    h2 {
+        color: #f78c6c;
+        margin-bottom: 20px;
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+    input, textarea {
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+    }
+    .gallery img {
+        width: 100%;
+        border-radius: 8px;
+    }
+    .caption {
+        font-size: 0.9rem;
+        text-align: center;
+        margin-top: 5px;
+    }
+    /* Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0; top: 0;
+        width: 100%; height: 100%;
+        background-color: rgba(0,0,0,0.6);
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        max-width: 300px;
+    }
+    .modal-content h3 {
+        margin: 0;
+        color: #f78c6c;
+    }
+    @keyframes fadeIn {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+</style>
+</head>
+<body>
+
+<!-- Language Selector -->
+<div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+    <select id="languageSelector">
+        <option value="en">English</option>
+        <option value="hi">हिन्दी</option>
+        <option value="mr">मराठी</option>
+        <option value="ta">தமிழ்</option>
+    </select>
+</div>
+
+<header>
+    <div class="content">
+        <h1>Bachpan Ki Muskan – हर मुस्कान मायने रखती है</h1>
+        <p>Bring joy to a child's life by celebrating with them</p>
+        <button class="btn" onclick="scrollToSection('booking')">Make a Booking</button>
+        <button class="btn" onclick="scrollToSection('sponsor')">Sponsor a Child</button>
+    </div>
+</header>
+
+<section id="about">
+    <h2>About Us</h2>
+    <p><strong>Bachpan Ki Muskan</strong> एक प्रयास है बच्चों के चेहरे पर मुस्कान लाने का। आपका जन्मदिन, आपकी खुशी – किसी अनाथ बच्चे के साथ बांटें और उनका दिन खास बनाएं।</p>
+    <p><em>Bachpan Ki Muskan</em> is an initiative to bring a smile to children's faces. Celebrate your special day with those who need love the most, and create memories for a lifetime.</p>
+</section>
+
+<section id="booking">
+    <h2>Make a Booking</h2>
+    <form onsubmit="showModal(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="date" required>
+        <textarea placeholder="Your Message" rows="4"></textarea>
+        <button type="submit" class="btn">Submit Booking</button>
+    </form>
+</section>
+
+<section id="sponsor">
+    <h2>Sponsor a Child</h2>
+    <form onsubmit="showModal(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <input type="number" placeholder="Amount (INR)" required>
+        <textarea placeholder="Your Message" rows="4"></textarea>
+        <button type="submit" class="btn">Sponsor Now</button>
+    </form>
+</section>
+
+<section id="gallery">
+    <h2>Smiles Gallery</h2>
+    <div class="gallery">
+        <div>
+            <img src="https://images.unsplash.com/photo-1607564821094-0ec49b2c57d3?auto=format&fit=crop&w=800&q=80" alt="Smiling Child">
+            <div class="caption">"Your kindness made me smile."</div>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1597047084897-51e81819a45c?auto=format&fit=crop&w=800&q=80" alt="Happy Kids">
+            <div class="caption">"A birthday to remember forever."</div>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1601999740817-1d9e6fcdadfd?auto=format&fit=crop&w=800&q=80" alt="Laughing Child">
+            <div class="caption">"Every laugh is a gift."</div>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1551615592-ef5fe247e8b9?auto=format&fit=crop&w=800&q=80" alt="Kids Playing">
+            <div class="caption">"Play, love, and happiness."</div>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1602610469394-7ec8a7e2b33d?auto=format&fit=crop&w=800&q=80" alt="Joyful Smile">
+            <div class="caption">"Your love, my smile."</div>
+        </div>
+        <div>
+            <img src="https://images.unsplash.com/photo-1592377426435-4d5d3d5a7939?auto=format&fit=crop&w=800&q=80" alt="Child's Happiness">
+            <div class="caption">"Together, we create happiness."</div>
+        </div>
+    </div>
+</section>
+
+<footer style="text-align: center; padding: 20px; background-color: #f78c6c; color: white;">
+    Made with ❤️ for smiles | Bachpan Ki Muskan
+</footer>
+
+<!-- Modal -->
+<div id="thankYouModal" class="modal">
+    <div class="modal-content">
+        <h3>❤️ Thank You!</h3>
+        <p>You just brought a smile to a child's face.</p>
+        <button class="btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<script>
+    // Smooth scroll
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reveal on scroll
+    const sections = document.querySelectorAll('section');
+    window.addEventListener('scroll', () => {
+        sections.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                sec.classList.add('show');
+            }
+        });
+    });
+
+    // Modal
+    function showModal(event) {
+        event.preventDefault();
+        document.getElementById('thankYouModal').style.display = 'flex';
+    }
+    function closeModal() {
+        document.getElementById('thankYouModal').style.display = 'none';
+    }
+
+    // Language Selector (Demo)
+    const translations = {
+        hi: {
+            about: "Bachpan Ki Muskan एक प्रयास है बच्चों के चेहरे पर मुस्कान लाने का...",
+        },
+        en: {
+            about: "Bachpan Ki Muskan is an initiative to bring a smile to children's faces...",
+        },
+        mr: { about: "बचपन की मुस्कान हा एक उपक्रम आहे जो मुलांच्या चेहऱ्यावर हसू आणण्यासाठी..." },
+        ta: { about: "பச்ச்பன் கி முஸ்கான் என்பது குழந்தைகளின் முகத்தில் சிரிப்பை கொண்டுவரும் முயற்சி..." }
+    };
+    document.getElementById('languageSelector').addEventListener('change', (e) => {
+        const lang = e.target.value;
+        // Demo: change about section text only
+        document.querySelector('#about p').innerText = translations[lang].about;
+    });
+</script>
+
+</body>
+</html>
